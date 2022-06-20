@@ -1,10 +1,12 @@
-const choices = ["rock", "paper", "scissor"];
+const selection = ["rock", "paper", "scissor"];
 const computerSelection = computerPlay();
 const playerSelection = playerPlay();
+playerScore = 0;
+computerScore = 0;
 
 function computerPlay() {
-  const randomPick = Math.floor(Math.random() * choices.length);
-  return (randomPick, choices[randomPick]);
+  const randomPick = Math.floor(Math.random() * selection.length);
+  return (randomPick, selection[randomPick]);
 }
 
 function playerPlay() {
@@ -14,33 +16,27 @@ function playerPlay() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-      return "It's a tie"
-  } else if ((playerSelection == "rock" && computerSelection == "scissor") || 
-             (playerSelection == "paper" && computerSelection == "rock")   || 
-             (playerSelection == "scissor" && computerSelection == "paper")) {
-      return "You win! ${playerSelection} beats the ${computerSelection}"
+    return "It's a tie"
+  } else if ((playerSelection === "rock" && computerSelection === "scissor") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissor" && computerSelection === "paper")) {
+    return `You win! ${playerSelection} beats the ${computerSelection}`
   } else {
-      return "You lost! ${playerSelection} beats the ${computerSelection}"
+    return `You lost! ${playerSelection} beats the ${computerSelection}`
   }
 }
 
-    // refactor
-    // if ((playerSelection == "rock" && computerSelection == "paper") || 
-    // (playerSelection == "paper" && computerSelection == "rock")) {
-    //     return ("You lose, Paper beats Rock") || ("You win, Rock beats Paper")
-    // } 
-    // else if ((playerSelection == "scissor" && computerSelection == "rock" ) || 
-    // (playerSelection == "rock" && computerSelection == "scissor")) {
-    //     return ("You lose, Rock beats Scissor") || ("You win, Rocks beats Scissor")
-    // }
-    // else if ((playerSelection == "paper" && computerSelection == "scissor" ) || 
-    // (playerSelection == "scissor" && computerSelection == "paper")) {
-    //     return ("You lose, Scissor beats Paper") || ("You win, Scissor beats Paper")
-    // } else {
-    //     (playerSelection == computerSelection)
-    //     return ("It's a tie")
-    // }
-
-
-// const playerSelection = "rock";
-// console.log(playRound(playerSelection, computerSelection));
+function playGame(playerSelection, computerSelection) {
+  for (let i = 0; i < 5; i++) {
+    playerSelection = playerPlay();
+    computerSelection = computerPlay();
+    console.log(`Players choose: ${playerSelection} \nComputer choose: ${computerSelection}`)
+    results = (playRound(playerSelection, computerSelection))
+    if (results === true) {
+      playerScore += 1;
+    } else {
+      computerScore += 1;
+    }
+    console.log(`--- Score --- \n Player:  ${playerScore} \n Computer ${computerScore}\n--------------`)
+  }
+}
