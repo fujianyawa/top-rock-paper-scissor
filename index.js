@@ -1,8 +1,15 @@
 const choices = ["rock", "paper", "scissor"];
+const computerSelection = computerPlay();
+const playerSelection = playerPlay();
 
 function computerPlay() {
     const randomPick = Math.floor(Math.random() * choices.length);
     return (randomPick, choices[randomPick]);
+}
+
+function playerPlay() {
+    const playerPick = prompt("Choose one: rock, paper, or scissors? ");
+    return playerPick;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -27,5 +34,4 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // const playerSelection = "rock";
-// const computerSelection = computerPlay();
 // console.log(playRound(playerSelection, computerSelection));
