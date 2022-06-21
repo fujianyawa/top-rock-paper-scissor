@@ -1,6 +1,4 @@
 const selection = ["rock", "paper", "scissor"];
-const computerSelection = computerPlay();
-const playerSelection = playerPlay();
 playerScore = 0;
 computerScore = 0;
 
@@ -10,8 +8,9 @@ function computerPlay() {
 }
 
 function playerPlay() {
-  const playerPick = prompt("Choose one: rock, paper, or scissors? ");
-  return playerPick;
+  let playerPick = prompt("Choose one: rock, paper, or scissors? ");
+  removeCaseInsensitive = playerPick.toLowerCase();
+  return removeCaseInsensitive;
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -40,5 +39,7 @@ function playGame(playerSelection, computerSelection) {
       return "You win!!!!"
     } else if (playerScore< computerScore){
       return "You lose :("
+    } else {
+      return "It's a Tie"
     }
 }
