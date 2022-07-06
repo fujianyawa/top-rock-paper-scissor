@@ -1,47 +1,59 @@
-const selection = ["rock", "paper", "scissor"];
 playerScore = 0;
 computerScore = 0;
+const selection = ["👊🏻 Rock", "🖐🏻 Paper", "✌🏻 Scissor"];
+const roundResults = document.querySelector('#results-round');
+const selectionButtons = document.querySelectorAll('div.choices button');
+const rePlayGameButton = document.querySelector('#replay-btn');
+
+selectionButtons.forEach(button => {button.addEventListener('click', playerPlay)});
+rePlayGameButton.addEventListener('click',() => location.reload())
+rePlayGameButton.style.display = 'none'
 
 function computerPlay() {
   const randomPick = Math.floor(Math.random() * selection.length);
   return (randomPick, selection[randomPick]);
 }
 
-function playerPlay() {
-  let playerPick = prompt("Choose one: rock, paper, or scissors? ");
-  removeCaseInsensitive = playerPick.toLowerCase();
-  return removeCaseInsensitive;
+function playerPlay(e) {
+  let playerSelection = (e.target.innerText);
+  playerChoice = e.target.innerText;
+  playRound(playerSelection, computerPlay);
 }
 
 function playRound(playerSelection, computerSelection) {
+  // playerSelection = playerPlay();
+  computerSelection = computerPlay();
   if (playerSelection === computerSelection) {
-    return "It's a tie"
-  } else if ((playerSelection === "rock" && computerSelection === "scissor") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissor" && computerSelection === "paper")) {
+    roundResults.innerText = `It's a tie \n\nPlayer:  ${playerScore}\nComputer: ${computerScore}`
+    if (playerScore === 5 || computerScore === 5) {
+      roundResults.innerText = `Round Draw \nPlayer:  ${playerScore}\nComputer: ${computerScore}`
+    }
+  } else if (
+    (playerSelection === "👊🏻 Rock" && computerSelection === "✌🏻 Scissor") ||
+    (playerSelection === "🖐🏻 Paper" && computerSelection === "👊🏻 Rock") ||
+    (playerSelection === "✌🏻 Scissor" && computerSelection === "🖐🏻 Paper")) {
     playerScore += 1;
-    return `You win! ${playerSelection} beats the ${computerSelection}`
+    roundResults.innerText = `You win! ${playerSelection} beats the ${computerSelection} 
+    \nPlayer:  ${playerScore}\nComputer: ${computerScore}`
+    if (playerScore === 5) {
+      roundResults.innerText = 'Game Over, You Win !!!!!'
+      rePlayGameButton.style.display = 'block'
+      disableButtons()
+    }
   } else {
     computerScore += 1
-    return `You lost! ${playerSelection} beats the ${computerSelection}`
-  }
-}
-
-function playGame(playerSelection, computerSelection) {
-  for (let i = 0; i < 5; i++) {
-    playerSelection = playerPlay();
-    computerSelection = computerPlay();
-    console.log(`Players choose : ${playerSelection} \nComputer choose: ${computerSelection}`)
-    results = (playRound(playerSelection, computerSelection))
-    console.log(`--- Score --- \n Player:  ${playerScore} \n Computer ${computerScore}\n--------------`)
-  }
-    if (playerScore > computerScore) {
-      return "You win!!!!"
-    } else if (playerScore< computerScore){
-      return "You lose :("
-    } else {
-      return "It's a Tie"
+    roundResults.innerText = `You lost! ${playerSelection} beats the ${computerSelection}
+    \nPlayer:  ${playerScore}\nComputer: ${computerScore}`
+      if (computerScore === 5){
+        roundResults.innerText = 'Game Over, You Lost :('
+        rePlayGameButton.style.display = 'block'
+        disableButtons()
     }
+  }
 }
 
-// testing the git branch temp only
+function disableButtons() {
+  selectionButtons.forEach(elements => {
+      elements.disabled = true
+  })
+}

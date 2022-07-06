@@ -1,0 +1,49 @@
+* {
+    font-family: 'Noto Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+    color: white;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+button {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0 10px;
+    margin: 10px 10px;
+    color: white;
+    font-weight: bold;
+    width: 160px;
+    border-radius: 5px;
+}
+.text, #results-round{
+    text-align: center;
+    margin: 36px;
+}
+.card {
+    padding: 10px 24px;
+    background-color: #1A1A1B;
+    border-radius: 10px;
+}
+#rock-btn, #scissor-btn {
+    background-color:#CE973E
+}
+#paper-btn, #replay-btn {
+    background-color: #63BFC4;
+}
+/* 
+#replay-btn{
+    margin: 5px;
+} */
