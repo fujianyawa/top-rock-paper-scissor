@@ -42,7 +42,7 @@ function playRound(playerSelection, computerSelection) {
     }
   } else {
     computerScore += 1
-    roundResults.innerText = `You lost! ${playerSelection} beats the ${computerSelection}
+    roundResults.innerText = `You lost! ${playerSelection} loses to ${computerSelection}
     \nPlayer:  ${playerScore}\nComputer: ${computerScore}`
       if (computerScore === 5){
         roundResults.innerText = 'Game Over, You Lost :('
