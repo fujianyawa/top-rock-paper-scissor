@@ -28,6 +28,12 @@ button {
     width: 160px;
     border-radius: 5px;
 }
+
+button:active{
+    box-shadow: 0 0 0 1.5px #fff;
+    transition: 0.1s;
+}
+
 .text, #results-round{
     text-align: center;
     margin: 36px;
@@ -47,3 +53,12 @@ button {
 #replay-btn{
     margin: 5px;
 } */
+
+footer {
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    background-color: #1A1A1B;
+    text-align: center;
+    width: 100%;
+}
