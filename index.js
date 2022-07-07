@@ -4,10 +4,26 @@ const selection = ["👊🏻 Rock", "🖐🏻 Paper", "✌🏻 Scissor"];
 const roundResults = document.querySelector('#results-round');
 const selectionButtons = document.querySelectorAll('div.choices button');
 const rePlayGameButton = document.querySelector('#replay-btn');
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
 
+trigger.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
 selectionButtons.forEach(button => {button.addEventListener('click', playerPlay)});
 rePlayGameButton.addEventListener('click',() => location.reload())
 rePlayGameButton.style.display = 'none'
+
+function toggleModal() {
+  modal.classList.toggle("show-modal");
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+      toggleModal();
+  }
+}
 
 function computerPlay() {
   const randomPick = Math.floor(Math.random() * selection.length);
